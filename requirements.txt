@@ -1,0 +1,6 @@
+# Direct dependencies only; pip resolves their transitive dependencies.
+Flask>=3.1,<4
+google-genai>=1.0,<2
+python-dotenv>=1.0,<2
+pydantic>=2.0,<3
+gunicorn>=23,<26

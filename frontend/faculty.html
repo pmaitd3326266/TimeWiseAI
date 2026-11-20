@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Dashboard | TimeWise AI</title>
+
+    <link rel="stylesheet" href="/assets/faculty.css">
+</head>
+
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<header>
+    <h1>⏰ TimeWise AI</h1>
+    <p>Faculty Dashboard</p>
+</header>
+
+<main class="dashboard" id="main-content">
+
+    <section class="welcome">
+        <h2>Welcome, Faculty! 👋</h2>
+        <p>Manage your academic schedule with TimeWise AI.</p>
+    </section>
+
+    <section class="content">
+
+        <div class="card">
+            <h3>👨‍🏫 Faculty Details</h3>
+<label for="facultyAccessToken">Faculty access token (provided by administrator)</label>
+<input type="password" id="facultyAccessToken" autocomplete="new-password" placeholder="Enter access token to save and generate timetables">
+<p class="note">Faculty operations require a private token. Do not share it in screenshots or public submissions.</p>
+
+            <label for="facultyName">Faculty Name</label>
+<input
+            type="text"
+          id="facultyName"
+           maxlength="120"
+           placeholder="Enter faculty name"
+        >
+            <label for="departmentSelect">Department</label>
+<select id="departmentSelect">
+    <option value="">Select Branch</option>
+    <option value="CSE">CSE</option>
+    <option value="CSE AI/ML">CSE AI/ML</option>
+    <option value="IT">Information Technology</option>
+    <option value="ECE">Electronics & Communication</option>
+    <option value="Chemical Engineering">Chemical Engineering</option>
+    <option value="Biotechnology">Biotechnology</option>
+</select>
+
+
+            <label for="facultyId">Faculty ID</label>
+<input
+    type="text"
+    id="facultyId"
+    maxlength="64"
+    placeholder="Enter faculty ID"
+>
+
+            <p id="facultyStatus" class="form-feedback" role="status" aria-live="polite" aria-atomic="true"></p>
+        </div>
+
+        <div class="card">
+            <h3>📚 Teaching Information</h3>
+
+            <label for="subjectSelect">Subject</label>
+<select id="subjectSelect">
+            <option value="">First select branch and semester</option>
+            </select>
+            <label for="semesterSelect">Class / Semester</label>
+<select id="semesterSelect">
+             <option value="">Select Semester</option>
+             <option value="1">1st Semester</option>
+            <option value="2">2nd Semester</option>
+            <option value="3">3rd Semester</option>
+            <option value="4">4th Semester</option>
+            <option value="5">5th Semester</option>
+            <option value="6">6th Semester</option>
+           <option value="7">7th Semester</option>
+            <option value="8">8th Semester</option>
+            </select>
+
+            <label for="weeklyLectures">Weekly Lectures</label>
+<input
+             type="number"
+             id="weeklyLectures"
+             step="1"
+             min="1"
+             max="40"
+             placeholder="Enter allotted lectures per week"
+             required
+        >
+
+            <button type="button" id="saveFacultyButton">
+                Save Faculty Information
+            </button>
+        </div>
+
+        <div class="card full-width">
+            <h3>🤖 AI Timetable Generator</h3>
+
+           
+<div class="note">
+    Your faculty details and teaching information will help
+    TimeWise AI generate an organized weekly timetable.
+    <br><br>
+    <strong>Feature:</strong> Automatic timetable generation
+    and faculty conflict detection.
+</div>
+
+<button type="button" id="generateTimetableButton">
+    Generate Weekly Timetable
+</button>
+
+<!-- ── Workload Analytics (shown after timetable generated) ── -->
+<div id="workloadAnalytics" style="display:none; margin-top:24px;">
+    <h4 style="color:#172554; margin-bottom:14px; font-size:16px;">📊 Faculty Workload Analytics</h4>
+
+    <div class="faculty-stats-grid">
+        <div class="faculty-stat-card">
+            <div class="fac-stat-icon" style="background:#eff6ff; color:#2563eb;">📅</div>
+            <div>
+                <div class="fac-stat-label">Scheduled Lectures</div>
+                <div class="fac-stat-value" id="statScheduled">0</div>
+            </div>
+        </div>
+        <div class="faculty-stat-card">
+            <div class="fac-stat-icon" style="background:#f0fdf4; color:#16a34a;">⏱️</div>
+            <div>
+                <div class="fac-stat-label">Weekly Teaching Hours</div>
+                <div class="fac-stat-value" id="statHours">0h</div>
+            </div>
+        </div>
+        <div class="faculty-stat-card">
+            <div class="fac-stat-icon" style="background:#fffbeb; color:#d97706;">🕐</div>
+            <div>
+                <div class="fac-stat-label">Free Periods</div>
+                <div class="fac-stat-value" id="statFree">0</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Subject-wise lecture distribution -->
+    <div id="subjectDistribution" style="margin-top:14px;"></div>
+
+    <!-- Conflict detection banner -->
+    <div id="conflictBanner" role="status" aria-live="polite"></div>
+</div>
+
+<div id="timetableResult" role="region" aria-label="Generated timetable" tabindex="-1"></div>
+
+<button type="button" id="downloadPDFButton">
+    Download Timetable PDF
+</button>
+
+        </div><!-- /.card.full-width -->
+
+    </section>
+
+</main>
+
+
+<script defer src="/assets/faculty.js"></script>
+
+
+</body>
+</html>
+
+

@@ -1,0 +1,335 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard | TimeWise AI</title>
+
+    <link rel="stylesheet" href="/assets/student.css">
+</head>
+
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<header>
+    <h1>⏰ TimeWise AI</h1>
+    <p>Student Dashboard</p>
+</header>
+
+<main class="dashboard" id="main-content">
+<p id="studentFeedback" class="form-feedback" role="status" aria-live="polite" aria-atomic="true"></p>
+
+    <section class="welcome">
+        <h2>Welcome, Student! 👋</h2>
+        <p>Plan your studies smarter and achieve your academic goals.</p>
+    </section>
+
+    <section class="content">
+
+        <div class="card">
+            <h3>🎓 Student Details</h3>
+
+            <label for="studentName">Student Name</label>
+<input            
+    type="text"
+    id="studentName"
+    maxlength="120"
+    placeholder="Enter your name"
+    required
+>
+
+           <label for="studentBranch">Department / Branch</label>
+<select id="studentBranch" required>
+    <option value="">Select Branch</option>
+    <option value="CSE">CSE</option>
+    <option value="CSE AI/ML">CSE AI/ML</option>
+    <option value="IT">Information Technology</option>
+    <option value="ECE">Electronics & Communication</option>
+    <option value="Chemical Engineering">Chemical Engineering</option>
+    <option value="Biotechnology">Biotechnology</option>
+</select>
+
+            <label for="studentSemester">Semester</label>
+<select id="studentSemester" required>
+                <option value="">Select Semester</option>
+                <option value="1st">1st Semester</option>
+                <option value="2nd">2nd Semester</option>
+                <option value="3rd">3rd Semester</option>
+                <option value="4th">4th Semester</option>
+                <option value="5th">5th Semester</option>
+                <option value="6th">6th Semester</option>
+                <option value="7th">7th Semester</option>
+                <option value="8th">8th Semester</option>
+            </select>
+
+        </div>
+
+       
+<div class="card">
+    <h3>📚 Study Preferences</h3>
+
+    <label for="subjectInput">Enter Subject Name</label>
+<input
+        type="text"
+        id="subjectInput" maxlength="120"
+        placeholder="Example: Mathematics"
+    >
+
+    <button type="button" id="addSubjectButton">
+        + Add Subject
+    </button>
+
+    <div id="subjectList" style="margin-top:20px;">
+        <p style="color:#64748b;">No subjects added yet.</p>
+    </div>
+
+    <label for="studyHours">Daily Study Hours</label>
+<select id="studyHours">
+        <option value="">Select study hours</option>
+        <option value="2">1-2 Hours</option>
+        <option value="4">3-4 Hours</option>
+        <option value="6">5-6 Hours</option>
+        <option value="8">7-8 Hours</option>
+    </select>
+
+    <label for="examDate">Upcoming Exam Date</label>
+<input type="date" id="examDate">
+
+</div>
+
+
+        <div class="card full-width">
+            <h3>🤖 AI Study Planner</h3>
+
+            <div class="note">
+                TimeWise AI will help you organize your subjects,
+                available study hours and upcoming exams.
+
+                <br><br>
+
+                <strong>Coming next:</strong>
+                Personalized study timetable, smart task scheduling
+                and progress tracking.
+            </div>
+<div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px;">
+    <button type="button" id="generateStudyPlanButton" style="margin-top:0;">
+        Generate Study Plan
+    </button>
+    <button type="button" id="optimizeWithGeminiButton" style="margin-top:0;">
+        ✨ Optimize with Gemini
+    </button>
+</div>
+
+<div id="studyPlanResult" role="status" aria-live="polite" style="margin-top:25px;"></div>
+
+<!-- Study Progress Tracker -->
+<div class="card" style="margin-top:25px; grid-column:1/-1;">
+
+    <h3>📊 Study Progress Tracker</h3>
+
+    <p style="color:#64748b;">
+        Track your preparation and monitor completed topics.
+    </p>
+
+    <label for="progressSubject">Select Subject</label>
+<select id="progressSubject">
+        <option value="">Select Subject</option>
+    </select>
+
+    <label for="topicInput">Enter Topic Name</label>
+<input
+        type="text"
+        id="topicInput" maxlength="160"
+        placeholder="Example: Matrices"
+    >
+
+    <button type="button" id="addTopicButton">
+        + Add Topic
+    </button>
+
+    <div id="progressTopicList" style="margin-top:20px;">
+        <p>No topics added yet.</p>
+    </div>
+
+    <h3 style="margin-top:25px;">Overall Progress</h3>
+
+    <h2 id="overallProgress">0%</h2>
+
+    
+<!-- Progress Bar -->
+<div
+    style="width:100%; height:12px; background:#e2e8f0; border-radius:10px; margin-top:12px; overflow:hidden;"
+>
+    <div
+        id="progressBar"
+        style="width:0%; height:100%; background:#16a34a; border-radius:10px;"
+    ></div>
+</div>
+
+<!-- Save and Load Buttons -->
+<button
+    type="button"
+    id="saveStudentDataButton"
+    style="margin-top:25px; background:#2563eb;"
+>
+    💾 Save My Data
+</button>
+
+<button
+    type="button"
+    id="loadStudentDataButton"
+    style="margin-top:15px; background:#7c3aed;"
+>
+    📂 Load My Data
+</button>
+
+<p id="saveStatus" role="status" aria-live="polite" style="margin-top:15px;"></p>
+
+    </div>
+
+</div>
+
+     <button
+    type="button"
+    id="downloadStudyPlanPDF"
+    style="margin-top:20px; background:#16a34a;"
+>
+    📥 Download Study Plan PDF
+</button>       
+        </div>
+
+        <!-- Student Performance Analytics Section -->
+        <div class="card full-width" style="margin-top: 25px;" id="analyticsSection">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 15px;">
+                <div>
+                    <h3 style="margin-bottom: 4px; color: #172554;">📈 Student Performance Analytics</h3>
+                    <p style="color: #64748b; font-size: 14px;">Real-time preparation metrics, subject mastery, and learning insights.</p>
+                </div>
+                <span id="analyticsStatusBadge" style="font-size: 12px; font-weight: bold; background: #e0f2fe; color: #0369a1; padding: 4px 12px; border-radius: 20px;">
+                    Live Analytics
+                </span>
+            </div>
+
+            <!-- 1. Overall Progress Stat Cards -->
+            <div class="analytics-stats-grid">
+                <div class="analytics-stat-card">
+                    <div class="stat-icon" style="background: #eff6ff; color: #2563eb;">📚</div>
+                    <div class="stat-data">
+                        <span class="stat-label">Total Topics</span>
+                        <span class="stat-value" id="analyticsTotalTopics">0</span>
+                    </div>
+                </div>
+                <div class="analytics-stat-card">
+                    <div class="stat-icon" style="background: #f0fdf4; color: #16a34a;">✅</div>
+                    <div class="stat-data">
+                        <span class="stat-label">Completed</span>
+                        <span class="stat-value" id="analyticsCompletedTopics">0</span>
+                    </div>
+                </div>
+                <div class="analytics-stat-card">
+                    <div class="stat-icon" style="background: #fffbeb; color: #d97706;">⏳</div>
+                    <div class="stat-data">
+                        <span class="stat-label">Pending</span>
+                        <span class="stat-value" id="analyticsPendingTopics">0</span>
+                    </div>
+                </div>
+                <div class="analytics-stat-card">
+                    <div class="stat-icon" style="background: #faf5ff; color: #7c3aed;">🎯</div>
+                    <div class="stat-data">
+                        <span class="stat-label">Overall Mastery</span>
+                        <span class="stat-value" id="analyticsOverallPct">0%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Overall Visual Progress Bar -->
+            <div style="margin-top: 20px;">
+                <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: bold; margin-bottom: 6px;">
+                    <span>Overall Syllabus Completion</span>
+                    <span id="analyticsBarLabel">0% Complete</span>
+                </div>
+                <div style="width: 100%; height: 12px; background: #e2e8f0; border-radius: 10px; overflow: hidden;">
+                    <div id="analyticsProgressBar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #2563eb, #16a34a); border-radius: 10px; transition: width 0.3s ease;"></div>
+                </div>
+            </div>
+
+            <!-- 2. Subject-wise Performance Grid & 3. Learning Insights -->
+            <div class="analytics-dual-grid" style="margin-top: 25px;">
+                <!-- Subject-wise Breakdown -->
+                <div class="analytics-sub-card">
+                    <h4 style="color: #172554; margin-bottom: 15px; font-size: 16px; display: flex; align-items: center; gap: 8px;">
+                        <span>📊</span>
+                        <span>Subject-wise Mastery</span>
+                    </h4>
+                    <div id="analyticsSubjectList" style="display: flex; flex-direction: column; gap: 14px;">
+                        <p style="color: #64748b; font-size: 14px;">No subjects added yet. Add subjects to see performance metrics.</p>
+                    </div>
+                </div>
+
+                <!-- Learning Insights & Personalized Recommendations -->
+                <div class="analytics-sub-card">
+                    <h4 style="color: #172554; margin-bottom: 15px; font-size: 16px; display: flex; align-items: center; gap: 8px;">
+                        <span>💡</span>
+                        <span>Learning Insights & Recommendations</span>
+                    </h4>
+                    <div id="analyticsInsightsContainer" style="display: flex; flex-direction: column; gap: 12px;">
+                        <div style="padding: 14px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 14px; color: #64748b;">
+                            Add your subjects and study topics to generate personalized performance insights.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+</main>
+
+<!-- Floating AI Study Assistant Chat Widget -->
+<button type="button" id="aiChatToggleBtn" class="ai-chat-toggle-btn" aria-label="Open AI Study Assistant" aria-controls="aiChatPanel" aria-expanded="false">
+    <span>🤖</span>
+    <span>Ask AI Mentor</span>
+</button>
+
+<div id="aiChatPanel" class="ai-chat-panel" role="dialog" aria-modal="false" aria-labelledby="aiChatTitle" aria-hidden="true">
+    <div class="ai-chat-header">
+        <div class="ai-chat-header-info">
+            <h4 id="aiChatTitle">🤖 AI Study Assistant</h4>
+            <p>Powered by Gemini • Engineering Mentor</p>
+        </div>
+        <button type="button" id="aiChatCloseBtn" class="ai-chat-close-btn" aria-label="Close Chat">✕</button>
+    </div>
+
+    <div class="ai-chat-prompts-bar">
+        <button type="button" class="ai-prompt-chip" data-prompt="explain">💡 Explain a difficult topic</button>
+        <button type="button" class="ai-prompt-chip" data-prompt="strategy">📅 Make a revision strategy</button>
+        <button type="button" class="ai-prompt-chip" data-prompt="quiz">📝 Quiz me on pending topics</button>
+        <button type="button" class="ai-prompt-chip" data-prompt="prepare">🎯 Help me prepare for exams</button>
+    </div>
+
+    <div id="aiChatMessages" class="ai-chat-messages" role="log" aria-live="polite" aria-relevant="additions">
+        <div class="ai-msg ai-msg-assistant">Hello! 👋 I am your TimeWise AI Study Assistant.
+
+I can help clarify technical concepts, solve doubts, prioritize your pending topics, or build an exam revision strategy. How can I help you today?</div>
+    </div>
+
+    <div id="aiTypingIndicator" class="ai-typing-indicator" role="status" aria-live="polite">
+        <span>Gemini is thinking</span>
+        <span class="ai-typing-dots">
+            <span class="ai-typing-dot"></span>
+            <span class="ai-typing-dot"></span>
+            <span class="ai-typing-dot"></span>
+        </span>
+    </div>
+
+    <div class="ai-chat-input-area">
+        <textarea aria-label="Message to AI study assistant" id="aiChatInput" maxlength="4000" placeholder="Ask a study question or doubt..." rows="1"></textarea>
+        <button type="button" id="aiChatSendBtn" class="ai-chat-send-btn">Send</button>
+    </div>
+</div>
+
+<script defer src="/assets/student.js"></script>
+
+</body>
+</html>

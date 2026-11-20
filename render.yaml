@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: timewise-ai
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn backend.app:app --bind 0.0.0.0:$PORT --workers 1 --threads 4 --timeout 90
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.11
+      - key: FLASK_DEBUG
+        value: 'False'
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: FACULTY_ADMIN_TOKEN
+        sync: false

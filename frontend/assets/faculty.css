@@ -1,0 +1,390 @@
+/* Keyboard, responsive and reduced-motion accessibility */
+.skip-link { position: fixed; top: -100px; left: 16px; z-index: 10000; padding: 12px 18px; background: #fff; color: #172554; border: 2px solid #172554; border-radius: 8px; }
+.skip-link:focus { top: 12px; }
+:focus-visible { outline: 3px solid #f59e0b !important; outline-offset: 3px; }
+button, input, textarea, select { font: inherit; }
+button { min-height: 40px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
+@media (max-width: 600px) { img, table { max-width: 100%; } .dashboard { max-width: 100%; } }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f6fb;
+            color: #1e293b;
+        }
+
+        header {
+            background: #172554;
+            color: white;
+            padding: 22px 8%;
+        }
+
+        header h1 {
+            font-size: 27px;
+        }
+
+        header p {
+            color: #cbd5e1;
+            margin-top: 6px;
+        }
+
+        .dashboard {
+            max-width: 1050px;
+            margin: 35px auto;
+            padding: 0 20px;
+        }
+
+        .welcome {
+            margin-bottom: 25px;
+        }
+
+        .welcome h2 {
+            color: #172554;
+            margin-bottom: 8px;
+        }
+
+        .welcome p {
+            color: #64748b;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+        }
+
+        .card h3 {
+            margin-bottom: 20px;
+            color: #172554;
+        }
+
+        label {
+            display: block;
+            margin: 14px 0 7px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 15px;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .note {
+            background: #eff6ff;
+            padding: 18px;
+            border-radius: 10px;
+            color: #1e40af;
+            line-height: 1.6;
+        }
+
+        @media(max-width: 700px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+
+            .full-width {
+                grid-column: auto;
+            }
+        }
+          
+/* Professional Timetable Design */
+
+#timetableResult {
+    margin-top: 30px;
+    overflow-x: auto;
+}
+
+#timetableResult h3 {
+    color: #172554;
+    margin: 25px 0 12px;
+    font-size: 20px;
+}
+
+#timetableResult table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 25px;
+    min-width: 600px;
+}
+
+#timetableResult th {
+    background: #172554;
+    color: white;
+    padding: 14px 10px;
+    text-align: left;
+}
+
+#timetableResult td {
+    padding: 13px 10px;
+    border: 1px solid #e2e8f0;
+    font-size: 14px;
+}
+
+#timetableResult tr:nth-child(even) {
+    background: #f1f5f9;
+}
+
+#timetableResult tr:hover {
+    background: #dbeafe;
+}
+
+#timetableResult .free-period {
+    color: #64748b;
+    font-style: italic;
+    background: #f8fafc;
+}
+
+@page {
+    size: A4 landscape;
+    margin: 10mm;
+}
+
+#timetableResult .weekly-table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+#timetableResult .weekly-table th,
+#timetableResult .weekly-table td {
+    padding: 12px 5px;
+    text-align: center;
+    font-size: 11px;
+    white-space: pre-line;
+    overflow-wrap: break-word;
+}
+
+#timetableResult .weekly-table th:first-child {
+    width: 12%;
+}
+
+#timetableResult .weekly-table td.free-period {
+    background: #f1f5f9;
+    color: #64748b;
+}
+
+@media print {
+    #timetableResult {
+        width: 100%;
+        page-break-inside: avoid;
+    }
+
+    #timetableResult .weekly-table {
+        page-break-inside: avoid;
+    }
+}
+
+
+@media print {
+
+    body * {
+        visibility: hidden !important;
+    }
+
+    #timetableResult,
+    #timetableResult * {
+        visibility: visible !important;
+    }
+
+    #timetableResult {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        margin: 0;
+        padding: 15px;
+    }
+
+    #timetableResult::before {
+        content: "TIMEWISE AI - WEEKLY TIMETABLE";
+        display: block;
+        font-size: 22px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 25px;
+        color: #172554;
+    }
+
+    #timetableResult table {
+        min-width: 0;
+        width: 100%;
+        page-break-inside: avoid;
+    }
+
+    #timetableResult tr {
+        page-break-inside: avoid;
+    }
+}
+
+
+
+/* ── Workload Analytics ── */
+.faculty-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px;
+    margin: 20px 0;
+}
+.faculty-stat-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.fac-stat-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+.fac-stat-label {
+    font-size: 11px;
+    color: #64748b;
+    margin-bottom: 2px;
+}
+.fac-stat-value {
+    font-size: 22px;
+    font-weight: bold;
+    color: #172554;
+}
+
+/* ── Conflict highlight ── */
+.conflict-cell {
+    background: #fef2f2 !important;
+    border: 2px solid #ef4444 !important;
+}
+.conflict-banner {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-top: 12px;
+    color: #991b1b;
+    font-size: 14px;
+}
+.conflict-ok-banner {
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-top: 10px;
+    color: #065f46;
+    font-size: 13px;
+}
+
+/* ── Subject distribution list ── */
+.subj-dist-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background: #f1f5f9;
+    border-radius: 6px;
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+.subj-dist-count {
+    font-weight: bold;
+    color: #2563eb;
+}
+
+/* ── Editable timetable cell ── */
+.editable-cell {
+    cursor: pointer;
+    position: relative;
+}
+.editable-cell:hover {
+    background: #eff6ff !important;
+}
+.cell-edit-hint {
+    display: block;
+    font-size: 9px;
+    color: #94a3b8;
+    margin-top: 2px;
+}
+.cell-edit-form input {
+    width: 100%;
+    font-size: 11px;
+    padding: 3px 5px;
+    margin-bottom: 3px;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.cell-edit-actions {
+    display: flex;
+    gap: 4px;
+    margin-top: 2px;
+}
+.cell-edit-actions button {
+    font-size: 10px;
+    padding: 3px 8px;
+    margin-top: 0;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.btn-cell-save  { background: #2563eb; color: white; border: none; }
+.btn-cell-cancel{ background: #64748b; color: white; border: none; }
+
+/* ── Print: hide analytics and edit UI ── */
+@media print {
+    #workloadAnalytics,
+    .cell-edit-hint,
+    .cell-edit-form,
+    .cell-edit-actions { display: none !important; }
+}
+
+/* Accessible status messages and responsive data tables */
+.form-feedback { min-height: 1.4em; margin: 10px 0; color: #14532d; font-weight: 600; }
+.form-feedback.feedback-error { color: #991b1b; }
+.weekly-table { width: 100%; }
+@media (max-width: 760px) { .weekly-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; } }
+.cell-edit-form label { display: block; text-align: left; font-size: 0.9rem; }
+.cell-edit-form input { min-width: 0; max-width: 100%; }
+@media (forced-colors: active) { :focus-visible { outline: 3px solid Highlight !important; } }

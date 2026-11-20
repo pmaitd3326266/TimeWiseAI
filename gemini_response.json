@@ -1,0 +1,31 @@
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "Hi! How can I help you today?",
+            "thoughtSignature": "Eo4BCosBAWkUfRMuBMK7Q8ALHkPJ2UaCdg0xYbmuffO6EJQCRKpy78Yh7ofZy65orqLxOuCycY573pCt6PG3OVjqvGwgPV5zoVEwxHrnJZdbFQ1+pWgK9CCBPMk837ewrgi+j3VDlvdfURJbedyOXL87bOucmxPng5BEVOkIiTs9TU/QSgl+3SgVtA0fZXGQqg=="
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 3,
+    "candidatesTokenCount": 9,
+    "totalTokenCount": 12,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 3
+      }
+    ],
+    "serviceTier": "standard"
+  },
+  "modelVersion": "gemini-3.5-flash-lite",
+  "responseId": "cE0Aa-ThFOaH3LUP0reWaA"
+}
