@@ -133,7 +133,7 @@ const departmentSelect = document.getElementById("departmentSelect");
         try {
             const response = await fetch(
                 `/api/generate-timetable?branch=${encodeURIComponent(branch)}&semester=${semester}`,
-                { headers: { "X-Faculty-Token": document.getElementById("facultyAccessToken").value.trim() } }
+              
             );
 
             const data = await response.json();
