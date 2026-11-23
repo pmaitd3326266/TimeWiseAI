@@ -87,7 +87,7 @@ const departmentSelect = document.getElementById("departmentSelect");
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "X-Faculty-Token": document.getElementById("facultyAccessToken").value.trim()
+                   
                 },
                 body: JSON.stringify(facultyData)
             });
